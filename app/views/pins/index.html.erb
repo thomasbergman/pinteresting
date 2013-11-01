@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Description</th>
       <th></th>
       <th></th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @pins.each do |pinne| %>
       <tr>
+        <td><%= image_tag pinne.image.url(:medium) %></td>
         <td><%= pinne.description %></td>
         <td><%= pinne.user.email if pinne.user %></td>
         <td><%= link_to 'Show', pinne %></td>
