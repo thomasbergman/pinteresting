@@ -1,33 +1,17 @@
-<h1>Listing pins</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pins.each do |pinne| %>
-      <tr>
-        <td><%= image_tag pinne.image.url(:medium) %></td>
-        <td><%= pinne.description %></td>
-        <td><%= pinne.user.email if pinne.user %></td>
-        <td><%= link_to 'Show', pinne %></td>
+<div id="pins" class="transitions-enabled">
+  <% @pins.each do |pinne| %>
+    <div class="box panel panel-default">
+      <%= image_tag pinne.image.url(:medium) %>
+      <div class="panel-body">
+        <%= pinne.description %>
+        <%= pinne.user.email if pinne.user %>
+        <%= link_to 'Show', pinne %>
         <% if pinne.user == current_user %>
-        <td><%= link_to 'Edit', edit_pin_path(pinne) %></td>
-        <td><%= link_to 'Destroy', pinne, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%= link_to 'Edit', edit_pin_path(pinne) %>
+          <%= link_to 'Destroy', pinne, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end%>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if user_signed_in? %>
-  <%= link_to 'New Pin', new_pin_path %>
-<% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
