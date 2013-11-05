@@ -19,11 +19,12 @@ class PinsController < ApplicationController
 
   def create
     @pin = current_user.pins.build(pin_params)
-
-    if @pin.save
+    if verify_recaptcha(:model=>@pin,:message=>"Verification code is wrong", :attribute=>"verification code") && @pin.save
       redirect_to @pin, notice: 'Pin was successfully created.'
     else
-      render action: 'new'
+     #render action: 'new'
+     #flash.delete(:recaptcha_error)
+     redirect_to new_pin_path(pin_params)
     end
   end
 
