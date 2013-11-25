@@ -7,7 +7,7 @@
       <%= image_tag pinne.image.url(:medium) %>
       <div class="panel-body">
         <%= pinne.description %>
-        <%= pinne.user.email if pinne.user %>
+        <p><%= pinne.user.name if pinne.user %></p>
         <%= link_to 'Show', pinne %>
         <% if pinne.user == current_user %>
           <%= link_to 'Edit', edit_pin_path(pinne) %>
