@@ -1,6 +1,7 @@
 Pinteresting::Application.routes.draw do
   resources :pins
-
+  match 'new_pin', to: 'pins#new', via: [:get, :post]
+  match 'all', to: 'pins#index', via: :all, as: 'all_pins'
   devise_for :users
   root 'pins#index'
   get 'about' => 'pages#about'
